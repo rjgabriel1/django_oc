@@ -7,7 +7,7 @@ class BandAndmin(admin.ModelAdmin):
     list_display = ('name','year_formed', 'genre')
 
 class MerchAdmin(admin.ModelAdmin):
-    list_display = ('description', 'sold','type','year')
+    list_display = ('description', 'band','sold','type','year')
 
 # register Band model
 admin.site.register(Band,BandAndmin)

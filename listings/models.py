@@ -1,6 +1,6 @@
 from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
-# Create your models here.
+
 
 
 class Band(models.Model):
@@ -15,6 +15,9 @@ class Band(models.Model):
     year_formed = models.IntegerField(validators=[MinValueValidator(1900), MaxValueValidator(2023)], default=2000)
     active = models.BooleanField(default=True)
     official_homepage = models.URLField(null=True, blank=True)
+    
+    def __str__(self) -> str:
+        return self.name
 
 
 
@@ -29,9 +32,10 @@ class Merch(models.Model):
     sold = models.BooleanField(default=False)
     year = models.IntegerField(validators=[MinValueValidator(1900), MaxValueValidator(2023)])
     type = models.CharField(choices=Type.choices, max_length=50,default='Records')
+    band = models.ForeignKey(Band, null=True, on_delete=models.SET_NULL)
 
-
-
+    def __str__(self) -> str:
+        return self.description
 
 class Song(models.Model):
     title =models.CharField(max_length=150)
