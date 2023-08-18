@@ -14,4 +14,4 @@ def hello(request):
 
 
 def about(request):
-    return HttpResponse("<h1>About Us</h1>")
+    return render(request,'bands/about.html')
