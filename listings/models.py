@@ -17,5 +17,21 @@ class Band(models.Model):
     official_homepage = models.URLField(null=True, blank=True)
 
 
+
+class Merch(models.Model):
+    class Type(models.TextChoices):
+        record ='record'
+        clothing = 'clothing'
+        poster = 'poster'
+        miscellaneous ='miscellaneous'
+        
+    description = models.CharField(max_length=500, default='')
+    sold = models.BooleanField(default=False)
+    year = models.IntegerField(validators=[MinValueValidator(1900), MaxValueValidator(2023)])
+    type = models.CharField(choices=Type.choices, max_length=50,default='Records')
+
+
+
+
 class Song(models.Model):
     title =models.CharField(max_length=150)
