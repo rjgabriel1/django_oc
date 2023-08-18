@@ -5,11 +5,11 @@ from listings.models import Song
 # Create your views here.
 
 
-def hello(request):
+def band_list(request):
     bands = Band.objects.all()
     song = Song.objects.all()
     return render(request,
-        'bands/hello.html',
+        'bands/band_list.html',
         {'bands': bands})
 
 

@@ -37,5 +37,6 @@ class Merch(models.Model):
     def __str__(self) -> str:
         return self.description
 
+
 class Song(models.Model):
     title =models.CharField(max_length=150)
