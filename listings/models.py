@@ -8,6 +8,9 @@ class Band(models.Model):
         HIP_HOP ='HH' 
         SYNTH_POP ='SP'
         ALTERNATIVE_ROCK = 'AR' 
+        DANCE ="DANCE"
+        POP ="POP"
+        RNB ="R&B"
         
     name = models.CharField(max_length=100)
     genre = models.CharField(choices= Genre.choices, default='HH',max_length=25)
