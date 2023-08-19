@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from listings.models import Band, Merch
-
+from listings.forms import ContactForm
 # Create your views here.
 
 
@@ -30,5 +30,9 @@ def merch_detail(request, merch_id):
     return render(request,'bands/merch_detail.html',{'merch': merch})
 
 
-def about(request):
-    return render(request, 'bands/about.html')
+def contact(request):
+    
+    print('La méthode de requête est : ', request.method)
+    print('Les données POST sont : ', request.POST)
+    form = ContactForm()
+    return render(request, 'bands/contact.html', {"form": form})
