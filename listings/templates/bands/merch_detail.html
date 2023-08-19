@@ -1,0 +1,17 @@
+{% extends 'bands/base.html'%} 
+
+{%block content %} 
+<h2>{{ merch.description }}</h2>
+
+<ul>
+  <li>Description : {{ merch.description }}</li>
+  <li>Year : {{ merch.year }}</li>
+  <li>Sold : {{ merch.sold|yesno }}</li>
+  <li>Type : {{ merch.type }}</li>
+  {% if merch.band%}
+  <li>By: {{ merch.band }}</li>
+  {%endif%}
+</ul>
+
+<p>{{ band.biography }}</p>
+{%endblock%}

@@ -1,5 +1,12 @@
 body {
-  background: #333;
-  color: #eee;
-  padding: 5px;
+  color: #333;
+  background: #eee;
+}
+
+li > a {
+  text-decoration: none;
+}
+
+.colnav{
+  color: #eee
 }

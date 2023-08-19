@@ -7,10 +7,10 @@ class Band(models.Model):
     class Genre(models.TextChoices):
         HIP_HOP ='HH' 
         SYNTH_POP ='SP'
-        AR = 'AR' 
+        ALTERNATIVE_ROCK = 'AR' 
         
     name = models.CharField(max_length=100)
-    genre = models.CharField(choices= Genre.choices, default='HH',max_length=5)
+    genre = models.CharField(choices= Genre.choices, default='HH',max_length=25)
     biography = models.CharField(max_length=1000, default='')
     year_formed = models.IntegerField(validators=[MinValueValidator(1900), MaxValueValidator(2023)], default=2000)
     active = models.BooleanField(default=True)

@@ -1,0 +1,11 @@
+{%extends 'bands/base.html'%} 
+
+{%block content %}
+<h1>Merch List</h1>
+<ul>
+{%for merch in merchs%}
+<li><a href="{%url 'merch-detail' merch.id%}">{{merch.description}}</a></li>
+{%endfor%}
+</ul>
+
+{%endblock%}
