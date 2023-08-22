@@ -11,6 +11,7 @@ class Band(models.Model):
         DANCE ="DANCE"
         POP ="POP"
         RNB ="R&B"
+        CHRISTIAN ='CHRISTIAN'
         
     name = models.CharField(max_length=100)
     genre = models.CharField(choices= Genre.choices, default='HH',max_length=25)
