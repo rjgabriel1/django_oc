@@ -1,10 +1,10 @@
-{% extends 'bands/base.html' %}
-    
-  {% block content %}
-    <h1>Groups</h1>
-    <ul>
-      {% for band in bands %}
-      <li><a href="{% url 'band-detail' band.id %}">{{ band.name }}</a></li>
-      {%endfor%}
-    </ul>
- {%endblock%}
+{% extends 'bands/base.html' %} {% block content %}
+<h1>Groups</h1>
+<ul>
+  {% for band in bands %}
+  <li><a href="{% url 'band-detail' band.id %}">{{ band.name }}</a></li>
+  {%endfor%}
+</ul>
+
+<a href="{% url 'band-add' %}">Add a new Band</a>
+{%endblock%}

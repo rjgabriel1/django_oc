@@ -10,3 +10,5 @@ li > a {
 .colnav{
   color: #eee
 }
+
+.errorlist { margin-bottom: -10px }
