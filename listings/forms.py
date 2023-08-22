@@ -1,5 +1,5 @@
 from django import forms
-from listings.models import Band
+from listings.models import Band ,Merch
 
 class ContactForm(forms.Form):
     name = forms.CharField(required=False)
@@ -10,3 +10,11 @@ class BandForm(forms.ModelForm):
     class Meta:
         model = Band
         fields ='__all__'
+        exclude =('active', 'official_homepage' )
+        
+
+class MerchForm(forms.ModelForm):
+    class Meta:
+        model = Merch
+        fields = '__all__'
+        exclude = ('sold',)
