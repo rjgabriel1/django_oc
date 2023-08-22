@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
 from listings.models import Band, Merch
-from listings.forms import ContactForm, BandForm
+from listings.forms import ContactForm, BandForm, MerchForm
 from django.core.mail import send_mail
 
 # Create your views here.
@@ -35,6 +35,7 @@ def band_add(request):
     return render(request, 'bands/band_add.html', {'form': form})
 
 
+
 def merch_list(request):
     merchs = Merch.objects.all()
     return render(request, 'bands/merch_list.html', {'merchs': merchs})
@@ -44,11 +45,20 @@ def merch_detail(request, merch_id):
     merch = Merch.objects.get(id=merch_id)
     return render(request, 'bands/merch_detail.html', {'merch': merch})
 
+def merch_add(request):
+    if request.method == 'POST':
+        form = MerchForm(request.POST)
+        if form.is_valid():
+           merch = form.save()
+           return redirect('merch-detail', merch.id)
+    else:
+        form = MerchForm()
+    return render(request, 'bands/merch_add.html', {'form': form})
 
 def contact(request):
     if request.method == "POST":
         form = ContactForm(request.POST)
-
+        
         if form.is_valid():
             send_mail(subject=f"Message from {form.cleaned_data['name']} Merchex  contact form",
                       message=form.cleaned_data['message'],
