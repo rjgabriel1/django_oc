@@ -23,10 +23,10 @@ def band_detail(request, band_id):
 
 
 def band_add(request):
-    if request.method =="POST":
+    if request.method == "POST":
         form = BandForm(request.POST)
         if form.is_valid():
-            #create new band and add it to the db.
+            # create new band and add it to the db.
             band = form.save()
         return redirect('band-detail', band.id)
     else:
@@ -34,6 +34,18 @@ def band_add(request):
 
     return render(request, 'bands/band_add.html', {'form': form})
 
+
+def band_update(reuqest, band_id):
+    band = Band.objects.get(id=band_id)
+    if reuqest.method == "POST":
+        form = BandForm(reuqest.POST, instance=band)
+        if form.is_valid():
+            form.save()
+            return redirect('band-detail', band.id)
+    else:
+        form = BandForm(instance=band)
+
+    return render(reuqest, 'bands/band_update.html', {'form': form})
 
 
 def merch_list(request):
@@ -45,20 +57,22 @@ def merch_detail(request, merch_id):
     merch = Merch.objects.get(id=merch_id)
     return render(request, 'bands/merch_detail.html', {'merch': merch})
 
+
 def merch_add(request):
     if request.method == 'POST':
         form = MerchForm(request.POST)
         if form.is_valid():
-           merch = form.save()
-           return redirect('merch-detail', merch.id)
+            merch = form.save()
+            return redirect('merch-detail', merch.id)
     else:
         form = MerchForm()
     return render(request, 'bands/merch_add.html', {'form': form})
 
+
 def contact(request):
     if request.method == "POST":
         form = ContactForm(request.POST)
-        
+
         if form.is_valid():
             send_mail(subject=f"Message from {form.cleaned_data['name']} Merchex  contact form",
                       message=form.cleaned_data['message'],
