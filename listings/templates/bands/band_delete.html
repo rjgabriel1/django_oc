@@ -1,0 +1,12 @@
+{%extends 'bands/base.html'%} {%block content%}
+
+<h3>Delete group</h3>
+<p>Are you sure you want to delete: {{band.name}}?</p>
+ 
+<form action="" method="post">
+    {%csrf_token%}
+    <input type="submit" value="Delete">
+</form>
+
+
+{%endblock%}

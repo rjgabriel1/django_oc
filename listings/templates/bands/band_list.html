@@ -1,13 +1,28 @@
 {% extends 'bands/base.html' %} {% block content %}
-<h1>Groups</h1>
-<ul>
-  {% for band in bands %}
-  <li>
-    <a href="{% url 'band-detail' band.id %}">{{ band.name }}</a>
-    - <a href="{% url 'band-update' band.id %}" class="edit-link">Edit</a>
-  </li>
-  {%endfor%}
-</ul>
 
-<a href="{% url 'band-add' %}">Add a new Band</a>
+<div class="container pt-5">
+  <h2>Band List</h2>
+  <a href="{% url 'band-add' %}" class="btn btn-success float-end">Add Band</a>
+  <br />
+  <br />
+  <table class="table table-striped">
+    <thead>
+      <tr class="table-dark">
+        <th scope="col">Band name</th>
+        <th scope="col">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for band in bands %}
+      <tr>
+        <td><a href="{% url 'band-detail' band.id %}" class="text-decoration-none">{{ band.name }}</a></td>
+        <td>
+          <a href="{% url 'band-update' band.id %}" class="btn btn-outline-primary ">Edit</a> 
+          <a href="{% url 'band-delete' band.id %}" class="btn btn-dark ">Delete</a>
+        </td>
+      </tr>
+      {%endfor%}
+    </tbody>
+  </table>
+</div>
 {%endblock%}

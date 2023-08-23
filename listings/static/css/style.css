@@ -3,10 +3,6 @@ body {
   background: #eee;
 }
 
-li > a {
-  text-decoration: none;
-}
-
 .colnav{
   color: #eee
 }

@@ -48,6 +48,16 @@ def band_update(reuqest, band_id):
     return render(reuqest, 'bands/band_update.html', {'form': form})
 
 
+def band_delete(request, band_id):
+    band = Band.objects.get(id= band_id)
+    if request.method == "POST":
+        band.delete()
+        return redirect('band-list')
+    
+    return render(request,'bands/band_delete.html',{"band":band})
+
+
+
 def merch_list(request):
     merchs = Merch.objects.all()
     return render(request, 'bands/merch_list.html', {'merchs': merchs})
