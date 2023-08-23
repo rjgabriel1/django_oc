@@ -1,12 +1,37 @@
-{%extends 'bands/base.html'%} 
+{%extends 'bands/base.html'%} {%block content %}
+<div class="container pt-5">
+  <h2>Merch List</h2>
+  <a href="{% url 'merch-add'%}" class="btn btn-success float-end">
+    Add Merch</a
+  >
+  <br />
+  <br />
+  <table class="table table-striped">
+    <thead>
+      <tr class="table-dark">
+        <th scope="col">Title</th>
+        <th scope="col">Description</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
 
-{%block content %}
-<h1>Merch List</h1>
-<ul>
-{%for merch in merchs%}
-<li><a href="{%url 'merch-detail' merch.id%}">{{merch.description}}</a></li>
-{%endfor%}
-</ul>
+    <tbody>
+      {%for merch in merchs%}
+      <tr>
+        <td>
+          {{merch.title}}
+        </td>
+        <td>{{merch.description}}</td>
+        <td>
+          <a href="#" class="btn btn-dark float-end m-2">Delete</a>
+          <a href="#" class="btn btn-outline-primary float-end m-2">Edit</a>
+          <a href="{%url 'merch-detail' merch.id%}" class="btn btn-outline-primary float-end m-2">View</a>
+        </td>
+      </tr>
 
-<a href="{% url 'merch-add'%}" role="button"> Add new Merch</a>
+      {%endfor%}
+    </tbody>
+  </table>
+</div>
+
 {%endblock%}
