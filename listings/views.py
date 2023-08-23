@@ -34,17 +34,17 @@ def band_add(request):
     return render(request, 'bands/band_add.html', {'form': form})
 
 
-def band_update(reuqest, band_id):
+def band_update(request, band_id):
     band = Band.objects.get(id=band_id)
-    if reuqest.method == "POST":
-        form = BandForm(reuqest.POST, instance=band)
+    if request.method == "POST":
+        form = BandForm(request.POST, instance=band)
         if form.is_valid():
             form.save()
             return redirect('band-detail', band.id)
     else:
         form = BandForm(instance=band)
 
-    return render(reuqest, 'bands/band_update.html', {'form': form})
+    return render(request, 'bands/band_update.html', {'form': form})
 
 
 def band_delete(request, band_id):
@@ -82,7 +82,7 @@ def merch_add(request):
 def merch_update(request, merch_id):
     merch = Merch.objects.get(id =merch_id)
     
-    if request =="POST":
+    if request.method =="POST":
         form = MerchForm(request.POST, instance=merch)
         if form.is_valid():
             form.save()

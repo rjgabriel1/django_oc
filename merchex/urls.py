@@ -31,7 +31,7 @@ urlpatterns = [
     path('merchs/', views.merch_list, name='merch-list'),
     path('merchs/<int:merch_id>/', views.merch_detail, name='merch-detail'),
     path('merchs/add', views.merch_add, name='merch-add'),
-     path('merchs/<int:merch_id>/update/', views.merch_update, name='merch-update'),
+    path('merchs/<int:merch_id>/update/', views.merch_update, name='merch-update'),
 
 
     path('contact-us/', views.contact, name='contact-us'),
