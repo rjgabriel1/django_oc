@@ -4,8 +4,7 @@ from listings.models import Band, Merch
 from listings.forms import ContactForm, BandForm, MerchForm
 from django.core.mail import send_mail
 
-# Create your views here.
-
+# Band Views
 
 def band_list(request):
     bands = Band.objects.all()
@@ -57,15 +56,16 @@ def band_delete(request, band_id):
     return render(request,'bands/band_delete.html',{"band":band})
 
 
+# Merch Views
 
 def merch_list(request):
     merchs = Merch.objects.all()
-    return render(request, 'bands/merch_list.html', {'merchs': merchs})
+    return render(request, 'merch/merch_list.html', {'merchs': merchs})
 
 
 def merch_detail(request, merch_id):
     merch = Merch.objects.get(id=merch_id)
-    return render(request, 'bands/merch_detail.html', {'merch': merch})
+    return render(request, 'merch/merch_detail.html', {'merch': merch})
 
 
 def merch_add(request):
@@ -76,9 +76,24 @@ def merch_add(request):
             return redirect('merch-detail', merch.id)
     else:
         form = MerchForm()
-    return render(request, 'bands/merch_add.html', {'form': form})
+    return render(request, 'merch/merch_add.html', {'form': form})
 
 
+def merch_update(request, merch_id):
+    merch = Merch.objects.get(id =merch_id)
+    
+    if request =="POST":
+        form = MerchForm(request.POST, instance=merch)
+        if form.is_valid():
+            form.save()
+            return redirect('merch-detail', merch.id)
+    
+    else:
+        form = MerchForm(instance=merch)
+    
+    return render(request, 'merch/merch_update.html', {'form': form})
+    
+# Other Views
 def contact(request):
     if request.method == "POST":
         form = ContactForm(request.POST)
