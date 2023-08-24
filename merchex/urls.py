@@ -20,7 +20,7 @@ from listings import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-
+    path('', views.home, name='home'),
     path('bands/', views.band_list, name='band-list'),
     path('bands/<int:band_id>/', views.band_detail, name='band-detail'),
     path('bands/add/', views.band_add, name='band-add'),
@@ -32,9 +32,6 @@ urlpatterns = [
     path('merchs/<int:merch_id>/', views.merch_detail, name='merch-detail'),
     path('merchs/add', views.merch_add, name='merch-add'),
     path('merchs/<int:merch_id>/update/', views.merch_update, name='merch-update'),
-
-
-    path('contact-us/', views.contact, name='contact-us'),
-    path('contact-us/email_sent.html', views.email_sent, name='email-sent'),
+    path('merchs/<int:merch_id>/delete/', views.merch_delete, name='merch-delete'),
 
 ]

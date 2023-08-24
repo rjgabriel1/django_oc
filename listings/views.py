@@ -4,8 +4,13 @@ from listings.models import Band, Merch
 from listings.forms import ContactForm, BandForm, MerchForm
 from django.core.mail import send_mail
 
-# Band Views
 
+def home(request):
+    return render(request,'bands/home.html')
+
+
+
+# Band Views
 def band_list(request):
     bands = Band.objects.all()
     return render(request,
@@ -48,12 +53,12 @@ def band_update(request, band_id):
 
 
 def band_delete(request, band_id):
-    band = Band.objects.get(id= band_id)
+    band = Band.objects.get(id=band_id)
     if request.method == "POST":
         band.delete()
         return redirect('band-list')
-    
-    return render(request,'bands/band_delete.html',{"band":band})
+
+    return render(request, 'bands/band_delete.html', {"band": band})
 
 
 # Merch Views
@@ -80,35 +85,28 @@ def merch_add(request):
 
 
 def merch_update(request, merch_id):
-    merch = Merch.objects.get(id =merch_id)
-    
-    if request.method =="POST":
+    merch = Merch.objects.get(id=merch_id)
+
+    if request.method == "POST":
         form = MerchForm(request.POST, instance=merch)
         if form.is_valid():
             form.save()
             return redirect('merch-detail', merch.id)
-    
+
     else:
         form = MerchForm(instance=merch)
-    
+
     return render(request, 'merch/merch_update.html', {'form': form})
-    
-# Other Views
-def contact(request):
-    if request.method == "POST":
-        form = ContactForm(request.POST)
-
-        if form.is_valid():
-            send_mail(subject=f"Message from {form.cleaned_data['name']} Merchex  contact form",
-                      message=form.cleaned_data['message'],
-                      from_email=form.cleaned_data['email'],
-                      recipient_list=['admin@example.com']
-                      )
-            return redirect('email_sent.html')
-    else:
-        form = ContactForm()
-    return render(request, 'bands/contact.html', {"form": form})
 
 
-def email_sent(request):
-    return render(request, 'bands/email_sent.html')
+def merch_delete(request, merch_id):
+    merch = Merch.objects.get(id=merch_id)
+
+    if request.method == 'POST':
+        merch.delete()
+
+        return redirect('merch-list')
+    return render(request, 'merch/merch_delete.html', {'merch': merch})
+
+
+

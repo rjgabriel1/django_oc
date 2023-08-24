@@ -2,23 +2,36 @@
 
 <div class="container pt-5">
   <h2>Band List</h2>
-  <a href="{% url 'band-add' %}" class="btn btn-success float-end">Add Band</a>
+  <a href="{% url 'band-add' %}" class="btn btn-primary float-end">New band</a>
   <br />
   <br />
-  <table class="table table-striped">
+  <table class="table table-striped table-bordered">
     <thead>
-      <tr class="table-dark">
-        <th scope="col">Band name</th>
-        <th scope="col">Actions</th>
+      <tr class="table-primary">
+        <th scope="col">BAND NAME</th>
+        <th scope="col">GENRE</th>
+        <th scope="col">ACTIONS</th>
       </tr>
     </thead>
     <tbody>
       {% for band in bands %}
       <tr>
-        <td><a href="{% url 'band-detail' band.id %}" class="text-decoration-none">{{ band.name }}</a></td>
+        <td>{{ band.name }}</td>
+        <td>{{ band.get_genre_display }}</td>
+
         <td>
-          <a href="{% url 'band-update' band.id %}" class="btn btn-outline-primary ">Edit</a> 
-          <a href="{% url 'band-delete' band.id %}" class="btn btn-dark ">Delete</a>
+          <a
+            href="{% url 'band-detail' band.id %}"
+            class="btn btn-outline-primary"
+            ><i class="bi bi-eye-fill"></i
+          ></a>
+
+          <a href="{% url 'band-update' band.id %}" class="btn btn-secondary"
+            ><i class="bi bi-pencil"></i
+          ></a>
+          <a href="{% url 'band-delete' band.id %}" class="btn btn-danger"
+            ><i class="bi bi-trash"></i
+          ></a>
         </td>
       </tr>
       {%endfor%}

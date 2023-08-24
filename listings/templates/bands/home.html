@@ -1,0 +1,24 @@
+{%extends 'bands/base.html'%} {%block content%}
+
+<div class="container my-5">
+  <div class="p-5 text-center bg-body-tertiary rounded-3">
+   
+    <h1 class="text-body-emphasis">WELCOME TO MERCHEX</h1>
+    <p class="col-lg-8 mx-auto fs-5 text-muted">
+      Discover a world of bands and their merchandise on our website! Explore a
+      wide range of bands and their cool gear, bring a bit of their music into
+      your everyday life!
+    </p>
+    <div class="d-inline-flex gap-2 mb-5">
+      <a
+        href="{%url 'band-list'%}"
+        class="d-inline-flex align-items-center btn btn-primary btn-lg px-4 rounded-pill"
+        type="button"
+      >
+        Explore bands
+      </a>
+    </div>
+  </div>
+</div>
+
+{%endblock%}
